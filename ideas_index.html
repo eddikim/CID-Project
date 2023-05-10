@@ -1,37 +1,12 @@
-//This could be used so the sponsor can click on parcels for property info
-//Might need to tweak code once data is added   
-
-map.on('click', 'parcel-info', (event) => {
-new mapboxgl.Popup()
-    .setLngLat(event.features[0].geometry.coordinates)
-    .setHTML(`<strong>Parcel Information:</strong> ${event.features[0].properties.cases}`)
-    .addTo(map);
-
-//*Rough draft for clickable years if you are interested
-//can edit when data is added
 <div id="toggle-buttons">
-    //<button id="timeline" class="map buttons" onclick="toggleLayer(this, 'Parcel Data By Years')">
+    <button id="timeline" class="map buttons" onclick="toggleLayer(this, 'Parcel Data By Years')">
       Parcel Data By Years
     </button>
   </div>
   <div id="years">
-    <button class="yr-buttons" onclick="updateYrs(this, 2007)">2007</button>
     <button class="yr-buttons" onclick="updateYrs(this, 2008)">2008</button>
-    <button class="yr-buttons" onclick="updateYrs(this, 2009)">2009</button>
-    <button class="yr-buttons" onclick="updateYrs(this, 2010)">2010</button>
-    <button class="yr-buttons" onclick="updateYrs(this, 2011)">2011</button>
-    <button class="yr-buttons" onclick="updateYrs(this, 2012)">2012</button>
     <button class="yr-buttons" onclick="updateYrs(this, 2013)">2013</button>
-    <button class="yr-buttons top-right" onclick="updateYrs(this, 2014)">2014</button>
-    <button class="yr-buttons bot-left" onclick="updateYrs(this, 2015)">2015</button>
-    <button class="yr-buttons" onclick="updateYrs(this, 2016)">2016</button>
-    <button class="yr-buttons" onclick="updateYrs(this, 2017)">2017</button>
     <button class="yr-buttons" onclick="updateYrs(this, 2018)">2018</button>
-    <button class="yr-buttons" onclick="updateYrs(this, 2019)">2019</button>
-    <button class="yr-buttons" onclick="updateYrs(this, 2020)">2020</button>
-    <button class="yr-buttons" onclick="updateYrs(this, 2021)">2021</button>
-    <button class="yr-buttons" onclick="updateYrs(this, 2022)">2022</button>
     <button class="yr-buttons" onclick="updateYrs(this, 2023)">2023</button>
-
     </body>
 </html>
