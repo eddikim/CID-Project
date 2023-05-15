@@ -7,12 +7,23 @@
 }
 body{
     font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
 }
-nav{
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    margin-top: 80px;
+}
+
+.navbar{
     background: #52c41d;
     height: 80px;
-    z-index: 2;
+    z-index: 10;
 }
+
 label.logo{
     color: white;
     font-size: 35px;
@@ -52,10 +63,15 @@ a.active, a:hover{
 #check{
     display:none;
 }
-/* @media (max-width: 952px){
+@media (max-width: 952px){
     label.logo{
         font-size: 30px;
         padding-left: 50px;
+    }
+    .navbar{
+        background: #52c41d;
+        height: 80px;
+        z-index: 10;
     }
     nav ul li {
         font-size: 16px;
@@ -75,6 +91,11 @@ a.active, a:hover{
         text-align: center;
         transition: all .5s;
     }
+    .navbar{
+        background: #52c41d;
+        height: 80px;
+        z-index: 10;
+    }
     nav ul li{
         display: block;
         margin: 50px 0;
@@ -91,4 +112,4 @@ a.active, a:hover{
     #check:checked ~ ul{
         left: 0;
     }
-} */
+}
