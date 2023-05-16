@@ -52,7 +52,7 @@ a.active, a:hover{
 #check{
     display:none;
 }
-/* @media (max-width: 952px){
+ @media (max-width: 952px){
     label.logo{
         font-size: 30px;
         padding-left: 50px;
@@ -91,4 +91,4 @@ a.active, a:hover{
     #check:checked ~ ul{
         left: 0;
     }
-} */
+}
