@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css" rel="stylesheet">
     <link href="tabs.html" rel="map">
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="css/index.css">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
 </head>
 
@@ -44,7 +44,7 @@
                     map.addSource('street-tiles', {
                         'type': 'raster',
                         'tiles': [
-                            '/assets/street/{z}/{x}/{y}.png'
+                            'assets/street/{z}/{x}/{y}.png'
                         ],
                         'tileSize': 256,
                         'attribution': 'Map tiles designed Edward Kim'
@@ -56,7 +56,7 @@
                         'layout': {
                             'visibility': 'none'
                         },
-                        'source': '/assets/street-tiles'
+                        'source': 'assets/street-tiles'
                     });
 
                 });
