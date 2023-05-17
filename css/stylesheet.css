@@ -7,6 +7,9 @@
 }
 body{
     font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    font: 18px;
 }
 nav{
     background: #52c41d;
@@ -29,6 +32,15 @@ nav ul li{
     line-height: 80px;
     margin: 0 5px;
 }
+h1 {
+    font-size: 36px;
+    float: right;
+    margin-right: 20px;
+  }
+
+  h2 {
+    font-size: 21px;
+  }
 nav ul li a{
     color: white;
     font-size: 17px;
