@@ -15,8 +15,8 @@ main {
     max-width: max-content;
     margin: auto;
     text-align: center;
-    margin-left: 300px;
-    margin-right: 300px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 nav{
     background: #52c41d;
@@ -54,18 +54,26 @@ h2 {
 }
 
 .about_blocks {
-    margin-top: 20px;
+    margin-top: 50px;
     margin-left: 20px;
 }
 
 .acknowledgement {
-    margin-top: 20px;
+    margin-top: 50px;
     margin-left: 20px;
+    margin-right: 20px;
+    text-align: center;
+
 }
 
 .about_title_name {
     margin-top: 20px;
     margin-left: 20px;
+}
+
+.members {
+    display: flex;
+    width: auto;
 }
 
 nav ul li a{
