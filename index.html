@@ -9,6 +9,8 @@
     <link href="tabs.html" rel="map">
     <link rel="stylesheet" href="css/index.css">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
+    <!-- Add Papa Parse library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 </head>
 
 <body>
@@ -29,8 +31,7 @@
     <main>
         <div id='map'>
             <script type="text/javascript">
-                mapboxgl.accessToken =
-                    'pk.eyJ1Ijoia3lhcGFwYXlhMjgiLCJhIjoiY2xnYjNtYm5wMG41YjNycWluMzl4azVpMCJ9.H5J8Cr9zh51DiSYHlmNLsA';
+                mapboxgl.accessToken = 'pk.eyJ1Ijoia3lhcGFwYXlhMjgiLCJhIjoiY2xnYjNtYm5wMG41YjNycWluMzl4azVpMCJ9.H5J8Cr9zh51DiSYHlmNLsA';
                 let map = new mapboxgl.Map({
                     container: 'map', // container ID
                     style: 'mapbox://styles/mapbox/streets-v10',
@@ -38,9 +39,7 @@
                     center: [-122.321, 47.597] // starting center
                 });
 
-
-                map.on('load', () => { //simplifying the function statement: arrow with brackets to define a function
-
+                map.on('load', () => {
                     map.addSource('assets/street-tiles', {
                         'type': 'raster',
                         'tiles': [
@@ -59,19 +58,53 @@
                         'source': 'assets/street-tiles'
                     });
 
+                    // Parse the CSV data
+                    Papa.parse('assets/data/CID_parcels2008.csv', {
+                        download: true,
+                        header: true,
+                        complete: async function(results) {
+                            let parcels = results.data;
+                            
+                            // Loop through each parcel
+                            for (let parcel of parcels) {
+                                // Use the Mapbox Geocoding API to get coordinates for each address
+                                let response = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(parcel["Parcel.address"])}.json?access_token=${mapboxgl.accessToken}`);
+                                let data = await response.json();
+
+                                // Make sure we got a result before trying to access it
+                                //if (data.features.length > 0) {
+                                    // This gets the longitude and latitude of the first result
+                                    let coordinates = data.features[0].center;
+                                    let popup = new mapboxgl.Popup({ offset: 25 })
+                                        .setHTML(`<strong>Address:</strong> ${parcel["Parcel.address"]}<br/>
+                                                <strong>Tax Payer Name:</strong> ${parcel["Taxpayer.name"]}<br/>
+                                                <strong>Seller Name:</strong> ${parcel["SellerName"]}<br/>
+                                                <strong>Built Year:</strong> ${parcel["YearBuilt"]}<br/>
+                                                <strong>Sale Price:</strong> ${parcel["SalePrice"]}<br/>
+                                                <strong>Date:</strong> ${parcel["DocumentDate"]}`);
+
+                                    // Create a new marker and add it to the map
+                                    new mapboxgl.Marker()
+                                        .setLngLat(coordinates)
+                                        .setPopup(popup)
+                                        .addTo(map);
+                                //} else {
+                                    console.warn(`No coordinates found for address: ${parcel["Parcel.address"]}`);
+                                //}
+                            }
+                        }
+                    });
+
                 });
 
-
-                // After the last frame rendered before the map enters an "idle" state.
                 map.on('idle', () => {
                     // If these two layers were not added to the map, abort
                     if (!map.getLayer('street-tiles')) {
                         return;
                     }
                 }); 
-
-
             </script>
         </div>
     </main>
 </body>
+</html>
