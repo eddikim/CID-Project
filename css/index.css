@@ -10,6 +10,11 @@ body{
     margin: 0;
     padding: 0;
 }
+.dropdown {
+    font-size: 16px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
 #map {
     position: absolute;
     top: 0;
@@ -112,10 +117,4 @@ a.active, a:hover{
     #check:checked ~ ul{
         left: 0;
     }
-    .dropdown {
-        font-size: 16px;
-        margin-top: 50px;
-        margin-bottom: 10px;
-    }
-
 }
