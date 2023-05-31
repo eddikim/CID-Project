@@ -11,9 +11,15 @@ body{
     font: 18px;
 }
 .dropdown {
-    font-size: 16px;
-    margin-top: 50px;
+    font-size: 20px;
+    margin-top: 65px;
     margin-bottom: 10px;
+    position: relative;
+    z-index: 2;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin: auto;
+    text-align: center;
 }
 
 main {
