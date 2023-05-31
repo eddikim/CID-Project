@@ -16,8 +16,7 @@ body{
     margin-bottom: 10px;
     position: relative;
     z-index: 2;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 40px;
     margin: auto;
 }
 #map {
