@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <title>About Us</title>
         <meta name ="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/stylesheet.css">
+        <link rel="stylesheet" href="css/analysis.css">
         <link rel="stylesheet"/>
     </head>
     <body>
@@ -25,60 +25,65 @@
         </header>
         <body>
 
-            <h1>Project Description</h1>
+            <h4>1. Background and Problem Statement</h4>
+            <br>
+            <p>	The background and problem statement serves the purpose of explaining the purpose 
+                of our project and what we were aiming to accomplish in completing the project. </p>
+            <br>
+            <p>In the past 15 years, the Chinatown International District (CID) has faced significant upzoning, 
+                challenging the well-being of its working-class community. Our goal was to develop an interactive 
+                web map and analysis to preserve small business land ownership and advocate for land conservation in the CID. 
+                We had three main objectives for this project. The first was to analyze notable changes in ownership trends over 
+                time within the CID. The second was to analyze how land is utilized within the CID, and what the predominant land 
+                use patterns are. The third objective was to analyze the ways in which corporate entities who own land within the 
+                CID are impacting its local community and residents.</p>
+            <br>
+            <p>We wanted to take a deeper look at LLCs (Limited Liability Companys). This is because LLCs hide the true owner of 
+                parcels which makes it hard to understand ownership and land use in an area. We also wanted to look at the occurrence 
+                of $0 property transactions and analyze what this means and why this is occurring so frequently within the CID.</p>
+            <br>
+            <p>The following sections will discuss the systems used to create the web map and the process used to clean the data needed 
+                for the creation of our map. We will also discuss our findings and any concluding statements and recommendations for 
+                future research.</p>
         
-            <p>Wildfires cause harm to the forestry and terrain of
-                land, and with wildfire data, we can find where wildfires most occur and
-                during which time in correlation to the health of the forests around
-                where the wildfire starts. Using a geo-narrative to map our data
-                would be the best way to represent our idea. We will use a
-                geo-narrative with thematic layers to show the change in wildfires
-                over time.</p>
-        
-            <p>Some examples of how this wildfire study can help others include people
-                actively trying to make decisions about where they should live or
-                move to, environmental health studies, the best locations for development, and for
-                research into animal displacement.</p>
-        
-            <h1>About The Map Creators</h1>
-        
-            <h2>Frost Song</h2>
-            <p>Education: Frost is a Senior at the University of
-                Washington and is majoing in Geographical Data Science.</p>
-        
-            <p>Contribution: A major help in the generation of code needed to
-                visualize our map layers.</p>
-        
-            <h2>Qirun Jiao</h2>
-        
-            <p>Education: Senior at the University of Washington who
-                is majoring in Geographical Data Science.</p>
-        
-            <p>Contribution: A major contributor to the code for our map and coded
-                the legend.</p>
-        
-            <h2>Blaise Hessels</h2>
-        
-            <p>Education: Senior at the University of
-                Washington and is majoring in Geography.</p>
-        
-            <p>Contribution: Analyzed trends in our data and authored the story map.</p>
-        
-            <h2>Kya Rice</h2>
-        
-            <p>Education: Junior at the University of Washington
-                and is majoring in Geography with a minor in Real Estate.</p>
-        
-            <p>Contribution: Wrote up the README file in our projects GitHub Repository
-                and helped to code the "About" page you are currently reading as well
-                as creating a toggle function that we ultimatley ended up not using.
-                A button element was used as an alternative.</p>
-        
-            <h2>David Ng</h2>
-        
-            <p>Education: Senior at the University of Washington and
-                is majoring in Geographical Data Science.</p>
-        
-            <p>Contribution: Participated in group presentations.</p>
+            <h4>2. System Requirments</h4>
+            <br>
+            <p>As for the demands of our project, we needed an interactive web map that wouldimplement the parcel data for each building 
+                within the CID, supplemented by details such as buyer name, date of purchase, and current use. Our data was acquired 
+                through the King County assessors office which will be further elaborated on in Section 3 of our report. The first part 
+                of our system requirements centered around QGIS which we used to generate raster tiles for our map. This was accomplished 
+                through the QTiles plugin and, in doing so, provided a smoother navigation as well as faster loading times even when handling 
+                our extensive dataset. MapBox was crucial in our research as it provided us with a foundation and stylistic options for our web 
+                map. We integrated MapBox into our workflow by leveraging its vast array of mapping tools and services and employing its Application 
+                Programming Interface (API). We were able to connect with MapBox's mapping services, such as tilesets, geocoding, and routing, 
+                using the API key. The API key made it possible to retrieve and display our raster tiles generated from QGIS. We were able to select 
+                a visually appealing and informative base map that suited our study aims, specifically by using MapBox's street style. After our 
+                basemap was completed using QGIS and MapBox, we used R Studio in order to remove any inconsistencies, errors, and verify data quality 
+                in order to cater the parcel data to our projects needs. Furthermore, VS Code was used as our development platform for creating our HTML 
+                web map. Its code editor gave us an effective platform for authoring, revising, and debugging our web map code. We created the HTML code 
+                that defined the structure, layout, and functionality of our web map using the features of VS Code. The relevant pieces, such as map 
+                containers, buttons, and data overlays were created using HTML's markup language. Additionally, the use of GitHub was required to 
+                effectively manage and publish our project. GitHub was critical to our project as it provided a centralized platform for collaborative 
+                development and version control, allowing us to properly track the progress and contributions of each team member.</p>
+            <br>
+            <h4>3. Data Acquisition</h4>
+            <br>
+            <p>Parcel data necessary for our project was obtained through direct contact with the King County assessors office. Prior to this effort, 
+                we attempted to acquire parcel data from the King County GIS Centers website. However, this proved to be futile as it did not include 
+                any geodata that could be seamlessly implemented into our web map. Since the data we needed was not readily available through a public 
+                open source, our team emailed the assessors office with a list of requirements, such as the timeframe (2008 - current) and detailed sales 
+                data for each building. This was a strenuous process, especially given how long it took to receive all parts of our data, but it proved to 
+                be effective and we were able to acquire everything we needed to complete our project.</p>
+            <br>
+            <h4>4.Data Analysis Stategy</h4>
+            <br>
+            <p>	In this section, we will discuss our approach to analyzing the data and how we went about working with such a large and complex dataset. 
+                As requested, we intended to create a map to help visualize how each parcel has changed hands within the CID. However, this would only 
+                offer methods of individual parcel analysis, so we also wanted to generate tables and charts that could help us understand overall trends 
+                in ownership and land usage.</p>
+            <br>
+            <p>	Our process follows the chart below. After acquiring our Real Property Sales data and Parcel data, we merged and cleaned these datasets 
+                together to create the dataset we would generate analysis from. Then, to look into the patterns of ownership in the CID, we created a map 
+                to visualize changes in ownership for each parcel as well as four tables/charts for overall analysis of ownership trends..</p>
           </body>
         </html>
