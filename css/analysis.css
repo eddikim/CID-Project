@@ -65,6 +65,15 @@ h2 {
 }
 h4{
     font-size: 30px;
+    margin-left: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+h5{
+    font-size: 18px;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-bottom: 25px;
 }
 
 .about_blocks {
