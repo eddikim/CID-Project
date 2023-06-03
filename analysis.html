@@ -67,13 +67,13 @@
                 future research.</h5>
         
             <h4>2. System Requirements</h4>
-            <h5>As for the demands of our project, we needed an interactive web map that wouldimplement the parcel data for each building 
-                within the CID, supplemented by details such as buyer name, date of purchase, and current use. Our data was acquired 
-                through the King County 'assessor's office which will be further elaborated on in Section 3 of our report. The first part 
-                of our system requirements centered around QGIS which we used to generate raster tiles for our map. This was accomplished 
-                through the QTiles plugin and, in doing so, provided a smoother navigation as well as faster loading times even when handling 
-                our extensive dataset. MapBox was crucial in our research as it provided us with a foundation and stylistic options for our web 
-                map. We integrated MapBox into our workflow by leveraging its vast array of mapping tools and services and employing its Application 
+            <h5>As for the demands of our project, we needed an interactive web map that would implement the parcel data for each building 
+                within the CID, supplemented by details such as buyer name, tax payer name, seller name, date of purchase, and purchase price. Our data was acquired 
+                through the King County Assessor's office, which will be further elaborated on in Section 3 of our report. The first part 
+                of our system requirements centered around QGIS, which we used to generate raster tiles for our map. This was accomplished 
+                through the QTiles plugin and, in doing so, provided a smoother navigation, as well as faster loading times even when handling 
+                our extensive dataset. MapBox was crucial in our research, as it provided us with a foundation and stylistic options for our web 
+                map. We integrated MapBox into our workflow by leveraging its vast array of mapping tools and services and by employing its Application 
                 Programming Interface (API). We were able to connect with MapBox's mapping services, such as tilesets, geocoding, and routing, 
                 using the API key. The API key made it possible to retrieve and display our raster tiles generated from QGIS. We were able to select 
                 a visually appealing and informative base map that suited our study aims, specifically by using MapBox's street style. After our 
@@ -81,7 +81,7 @@
                 in order to cater the parcel data to our projects needs. Furthermore, VS Code was used as our development platform for creating our HTML 
                 web map. Its code editor gave us an effective platform for authoring, revising, and debugging our web map code. We created the HTML code 
                 that defined the structure, layout, and functionality of our web map using the features of VS Code. The relevant pieces, such as map 
-                containers, buttons, and data overlays were created using HTML's markup language. Additionally, the use of GitHub was required to 
+                containers, buttons, dropdowns, and data overlays were created using HTML's markup language. Additionally, the use of GitHub was required to 
                 effectively manage and publish our project. GitHub was critical to our project as it provided a centralized platform for collaborative 
                 development and version control, allowing us to properly track the progress and contributions of each team member.</h5>
 
@@ -100,7 +100,7 @@
             <h5>There was one major issue with the Real Property Sales data that we needed to resolve: we did not know which parcels were a part of the CID. 
                 Our solution was to use the parcel viewer to select all the parcels in the agreed upon CID bounds (see in section 3.1 below) and extract the information on these parcels 
                 that the parcel viewer allows us to extract. This information includes the taxpayer, full parcel number, and address of the parcel. Through doing 
-                this, we then know which parcels are a part of the CID and have the addresses of the parcels to be able to geocode them when we create our map.</h5>
+                this, we then knew which parcels are a part of the CID and have the addresses of the parcels to be able to geocode them when we create our map.</h5>
 
             <h5>We extracted the information from the parcel viewer by going to Advanced Tools > Select parcels > Freehand Polygon and then selecting all parcels 
                 in the CID. When we attempted to do this with all parcels in the CID at once, the parcel viewer produced an error message saying they could not select 
@@ -171,9 +171,9 @@
 
             <h5>A major challenge was that some addresses in the dataset could not be converted to coordinates. This was due to limitations of the geocoding service and the presence of incorrectly formatted or non-existent 
                 addresses in the data. To address this issue, we performed a data cleanup process, correcting the formatting of the addresses where possible. We also handled errors by checking the response of the Geocoding 
-                API and providing a warning in the console if coordinates could not be found. This ensured the application would continue to function even if some addresses were not geocoded successfully. We found that some 
+                API, and providing a warning in the console if coordinates could not be found. This ensured the application would continue to function even if some addresses were not geocoded successfully. We found that some 
                 records in the CSV file contained incorrect or missing data. This was resolved by implementing error checks and handling methods within our JavaScript code. This allowed our application to continue running 
-                smoothly and present as much accurate information as possible, even when encountering problematic data. From this we still encountered a difficulty with populating all of the data points that we needed, so 
+                smoothly and present as much accurate information as possible, even when encountering problematic data. We still encountered a difficulty with populating all of the data points that we needed, so 
                 we took the advice of our peers and decided to utilize the free trial from Google’s Geocoding API to fulfill our needs for coordinates.</h5>
 
             <h4>4.3. Creating the Charts/Tables</h4>
@@ -190,13 +190,13 @@
                 recognize the LLC’s that are investing large amounts of money into the CID and analyze any underlying patterns between them. Not only that, but it also gives us the exact sale prices of the outliers found on the 
                 scatterplot we made previously, which can help us conceptualize how much buyers are willing to spend on the CID and any patterns on the years these purchases were made.</h5>
 
-            <h5>Our last items for analysis are a “Top 10 Occurrences of Buyer” table for the whole dataset (1980s-2023) and another for after 2008 to 2023. This table was generated by first counting the amount of times each buyer has occurred 
+            <h5>Our last items for analysis are a “Top 10 Occurrences of Buyer” table for the whole dataset (1980s-2023), and another for after 2008 to 2023. This table was generated by first counting the amount of times each buyer has occurred 
                 in the dataset as a whole and then again for all values after 2008. Then, we pulled the 10 buyers with the highest amount of occurrences from both the whole dataset and values after 2008, also listing how many occurrences 
                 they had. This helps us see who has purchased and had involvement in the most parcels in the CID. Then, we can analyze patterns between who these buyers are and if their involvement was present in the last 15 years (from 2008 and on).</h5>
 
             <h5>Through all of these items, we intend to find patterns and generate analysis on the CID and ownership transfers trends: what, how much, and when. </h5>
 
-            <h4>Discussion of Results</h4>
+            <h4>5. Discussion of Results</h4>
             <h5>As described in our data analysis strategy, we generated four items from our dataset to draw conclusions about our data and on the CID. In this section, we will present these items and discuss what we found from them. 
                 This includes recognizing ownership transfers that seemingly stayed in the same hands, looking into what parcels are sold for over time, the top sale prices for parcels, and the top buyer occurrences.
 
@@ -268,10 +268,10 @@
             <h4>8.2. Appendix B: Samples of Tables, Charts, and Reports</h4>
 
             <h4>8.3. Appendix C: Resumes</h4>
-            <h5>Christopher Cha</h5>
-            <h5>Edward Kim</h5>
-            <h5>Kya Rice</h5>
-            <h5>My-An Pham</h5>
+            <h5><a href="/pdf/christopher_resume.pdf">Christoper Cha</a></h5>
+            <h5><a href="/pdf/edward_resume.pdf">Edward Kim</a></h5>
+            <h5><a href="/pdf/myan_resume.pdf">My-An Pham</a></h5>
+            <h5><a href="/pdf/kya_resume.pdf">Kya Rice</a></h5>
 
           </body>
         </html>
