@@ -58,7 +58,7 @@
                 use patterns are. The third objective was to analyze the ways in which corporate entities who own land within the 
                 CID are impacting its local community and residents.</h5>
 
-            <h5>We wanted to take a deeper look at LLCs (Limited Liability Companys). This is because LLCs hide the true owner of 
+            <h5>We wanted to take a deeper look at LLC's (Limited Liability Companys). This is because LLC's hide the true owner of 
                 parcels which makes it hard to understand ownership and land use in an area. We also wanted to look at the occurrence 
                 of $0 property transactions and analyze what this means and why this is occurring so frequently within the CID.</h5>
 
@@ -69,7 +69,7 @@
             <h4>2. System Requirements</h4>
             <h5>As for the demands of our project, we needed an interactive web map that wouldimplement the parcel data for each building 
                 within the CID, supplemented by details such as buyer name, date of purchase, and current use. Our data was acquired 
-                through the King County assessors office which will be further elaborated on in Section 3 of our report. The first part 
+                through the King County 'assessor's office which will be further elaborated on in Section 3 of our report. The first part 
                 of our system requirements centered around QGIS which we used to generate raster tiles for our map. This was accomplished 
                 through the QTiles plugin and, in doing so, provided a smoother navigation as well as faster loading times even when handling 
                 our extensive dataset. MapBox was crucial in our research as it provided us with a foundation and stylistic options for our web 
@@ -86,10 +86,10 @@
                 development and version control, allowing us to properly track the progress and contributions of each team member.</h5>
 
             <h4>3. Data Acquisition</h4>
-            <h5>As requested by our sponsor, we wanted more information on the parcel data that appears on the the King County Assessors Office 
+            <h5>As requested by our sponsor, we wanted more information on the parcel data that appears on the the King County Assessor's Office 
                 <a href="https://gismaps.kingcounty.gov/parcelviewer2/">parcel viewer</a>. When a parcel in King County is selected, a popup that gives information about the 
                 parcels is displayed. This includes a link to the property report of the parcel, which has a bulk of the information our sponsor is interested 
-                in. We requested the assessors office to provide us with the dataset that was used for the property report, but for all parcels within the CID. 
+                in. We requested the assessor's office to provide us with the dataset that was used for the property report, but for all parcels within the CID. 
                 The data specialist sent us a <a href="https://info.kingcounty.gov/assessor/DataDownload/default.aspx">link to most of the data we requested</a>, 
                 but let us know that the data is not all in one dataset and they do not delineate the CID in their data. In looking through the tables provided in 
                 the link they sent, we found that the Real Property Sales table had 
@@ -107,7 +107,7 @@
                 that many parcels at a time. To combat this, we selected and extracted the parcels into an excel file in small chunks, with the intent to combine them 
                 into one dataset when we were cleaning the data.</h5>
 
-            <h5>All things considered, we had two datasets that we used from the King County Assessors Office. The Real Property Sales data and the Parcel data. Our 
+            <h5>All things considered, we had two datasets that we used from the King County Assessor's Office. The Real Property Sales data and the Parcel data. Our 
                 next step was finding a way to merge these two datasets into one file, but this proved to be more complicated than it seems. The Real Property Sales
                  data did not have the full parcel numbers. Instead, the parcel numbers were separated into two columns: Major (the first six values of the parcel number) 
                  and Minor (the last four values of the parcel number). In addition, the major and minor columns did not have leading zeros, so we needed to include the 
@@ -133,7 +133,7 @@
             <h5>For this project, our primary data source consisted of several Excel files obtained from the Washington King County Assessor's Office as 
                 mentioned in our “Data Acquisition” section. The first excel file was the Real Property Sales file, which contained the majority of the 
                 data needed: document date, buyer, seller, sale price, major (first six values of the parcel number), minor (last four values of parcel number), 
-                and more. The remaining excel files were extracted from the King County Assessors Office parcel viewer, which contained values like the full parcel 
+                and more. The remaining excel files were extracted from the King County Assessor's Office parcel viewer, which contained values like the full parcel 
                 number, address, appraised value, and more. To create a comprehensive and clean dataset with these files, we utilized R, a powerful tool for data analysis 
                 and manipulation.</h5>
 
@@ -179,7 +179,7 @@
             <h4>4.3. Creating the Charts/Tables</h4>
             <h5>Now, to understand overall trends of ownership and usage, we wanted to analyze various patterns within our dataset. We came up with four tables and charts to analyze this information:</h5>
 
-            <h5>“‘Transfer of Ownership’ in the same hands” is our first item for analysis, which was created with the intention of recognizing and analyzing how the majority of the points in our dataset were not actual sales, 
+            <h5>“‘Transfer of Ownership" in the same hands” is our first item for analysis, which was created with the intention of recognizing and analyzing how the majority of the points in our dataset were not actual sales, 
                 but ownership was being transferred. These occurrences are signified by a sale price of 0, meaning that there was no money involved and the parcel was essentially handed off to the next owner.</h5>
 
             <h5>Our second item for analysis is a scatterplot of parcel sale prices over time. This was created to visualize any trends and outliers in sale prices over time. Since the majority of sale prices were 0, we decided 
