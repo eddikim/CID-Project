@@ -43,3 +43,4 @@ sales$Parcel.number <- paste(sales$Major, sales$Minor, sep = "")
 
 #join sales file with parcels to only include CID parcels
 CID_parcels <- merge(parcels, sales, all.x = TRUE)
+
