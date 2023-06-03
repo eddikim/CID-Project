@@ -25,6 +25,27 @@
         </header>
         <body>
 
+            <h4>Table of Contents</h4>
+                <h5>1. Background and Problem Statement</h5>
+                <h5>2. System Requirements</h5>
+                <h5>3. Data Acquisition</h5>
+                <h5>3.1. Agreed Upon CID Bounds</h5>
+                <h5>4. Data Analysis Strategy</h5>
+                <h5>4.1. Cleaning the Data</h5>
+                <h5>4.2. Creating the Map</h5>
+                <h5>4.3. Creating the Charts/Tables</h5>
+                <h5>5. Discussion of Results</h5>
+                <h5>5.1. “Transfer of Ownership” In the Same Hands</h5>
+                <h5>5.2. Parcel Sales Over Time</h5>
+                <h5>5.3. Top 20 Sale Prices</h5>
+                <h5>5.4. Top 10 Occurrences of Buyer</h5>
+                <h5>6. Summary, Conclusions, and Recommendations</h5>
+                <h5>7. References</h5>
+                <h5>8. Appendices</h5>
+                <h5>8.1. Appendix A: Contacts</h5>
+                <h5>8.2. Appendix B: Samples of Tables, Charts, and Reports</h5>
+                <h5>8.3. Appendix C: Resumes</h5>
+                
             <h4>1. Background and Problem Statement</h4>
             <h5>The background and problem statement serves the purpose of explaining the purpose 
                 of our project and what we were aiming to accomplish in completing the project. </h5>
@@ -65,21 +86,192 @@
                 development and version control, allowing us to properly track the progress and contributions of each team member.</h5>
 
             <h4>3. Data Acquisition</h4>
-            <h5>Parcel data necessary for our project was obtained through direct contact with the King County assessors office. Prior to this effort, 
-                we attempted to acquire parcel data from the King County GIS Centers website. However, this proved to be futile as it did not include 
-                any geodata that could be seamlessly implemented into our web map. Since the data we needed was not readily available through a public 
-                open source, our team emailed the assessors office with a list of requirements, such as the timeframe (2008 - current) and detailed sales 
-                data for each building. This was a strenuous process, especially given how long it took to receive all parts of our data, but it proved to 
-                be effective and we were able to acquire everything we needed to complete our project.</h5>
+            <h5>As requested by our sponsor, we wanted more information on the parcel data that appears on the the King County Assessors Office 
+                <a href="https://gismaps.kingcounty.gov/parcelviewer2/">parcel viewer</a>. When a parcel in King County is selected, a popup that gives information about the 
+                parcels is displayed. This includes a link to the property report of the parcel, which has a bulk of the information our sponsor is interested 
+                in. We requested the assessors office to provide us with the dataset that was used for the property report, but for all parcels within the CID. 
+                The data specialist sent us a <a href="https://info.kingcounty.gov/assessor/DataDownload/default.aspx">link to most of the data we requested</a>, 
+                but let us know that the data is not all in one dataset and they do not delineate the CID in their data. In looking through the tables provided in 
+                the link they sent, we found that the Real Property Sales table had 
+                a bulk of the information we wanted to work with (including buyer, seller, document date (of the sale), sale price, and more), but we could not 
+                find year built, current use, or taxpayer. After attempts to request that information but receiving no response, we decided to move forward with 
+                the data we had.</h5>
 
-            <h4>4.Data Analysis Stategy</h4>
-            <h5>	In this section, we will discuss our approach to analyzing the data and how we went about working with such a large and complex dataset. 
+            <h5>There was one major issue with the Real Property Sales data that we needed to resolve: we did not know which parcels were a part of the CID. 
+                Our solution was to use the parcel viewer to select all the parcels in the agreed upon CID bounds (see in section 3.1 below) and extract the information on these parcels 
+                that the parcel viewer allows us to extract. This information includes the taxpayer, full parcel number, and address of the parcel. Through doing 
+                this, we then know which parcels are a part of the CID and have the addresses of the parcels to be able to geocode them when we create our map.</h5>
+
+            <h5>We extracted the information from the parcel viewer by going to Advanced Tools > Select parcels > Freehand Polygon and then selecting all parcels 
+                in the CID. When we attempted to do this with all parcels in the CID at once, the parcel viewer produced an error message saying they could not select 
+                that many parcels at a time. To combat this, we selected and extracted the parcels into an excel file in small chunks, with the intent to combine them 
+                into one dataset when we were cleaning the data.</h5>
+
+            <h5>All things considered, we had two datasets that we used from the King County Assessors Office. The Real Property Sales data and the Parcel data. Our 
+                next step was finding a way to merge these two datasets into one file, but this proved to be more complicated than it seems. The Real Property Sales
+                 data did not have the full parcel numbers. Instead, the parcel numbers were separated into two columns: Major (the first six values of the parcel number) 
+                 and Minor (the last four values of the parcel number). In addition, the major and minor columns did not have leading zeros, so we needed to include the 
+                 leading zeros before we could combine the major and minor columns to get the full parcel numbers. We will discuss how we did this along with the rest of 
+                 our data cleaning process in the section below.</h5>
+            
+            <h4>3.1. Agreed Upon CID Bounds</h4>
+            <h5><img src="IMG/cid_bounds.png"></h5>
+
+            <h4>4. Data Analysis Stategy</h4>
+            <h5>In this section, we will discuss our approach to analyzing the data and how we went about working with such a large and complex dataset. 
                 As requested, we intended to create a map to help visualize how each parcel has changed hands within the CID. However, this would only 
                 offer methods of individual parcel analysis, so we also wanted to generate tables and charts that could help us understand overall trends 
                 in ownership and land usage.</h5>
 
-            <h5>	Our process follows the chart below. After acquiring our Real Property Sales data and Parcel data, we merged and cleaned these datasets 
+            <h5>Our process follows the chart below. After acquiring our Real Property Sales data and Parcel data, we merged and cleaned these datasets 
                 together to create the dataset we would generate analysis from. Then, to look into the patterns of ownership in the CID, we created a map 
                 to visualize changes in ownership for each parcel as well as four tables/charts for overall analysis of ownership trends..</h5>
+
+            <h5> <img src="IMG/data_analysis_strategy.png"></h5>
+
+            <h4>4.1. Cleaning the Data</h4>
+            <h5>For this project, our primary data source consisted of several Excel files obtained from the Washington King County Assessor's Office as 
+                mentioned in our “Data Acquisition” section. The first excel file was the Real Property Sales file, which contained the majority of the 
+                data needed: document date, buyer, seller, sale price, major (first six values of the parcel number), minor (last four values of parcel number), 
+                and more. The remaining excel files were extracted from the King County Assessors Office parcel viewer, which contained values like the full parcel 
+                number, address, appraised value, and more. To create a comprehensive and clean dataset with these files, we utilized R, a powerful tool for data analysis 
+                and manipulation.</h5>
+
+            <h5>Our first step was to consolidate the files into a single dataset for ease of access and analysis. For this purpose, we used the readxl library in R to read 
+                each Excel file, and the dplyr library's full_join function to merge all parcel data files into one large parcel file. After doing this, we needed a way to 
+                combine the parcel data and sales data, but there were discrepancies in formatting between datasets. The 'Minor' and 'Major' columns in the sales file lacked 
+                leading zeros, meaning that if we attempted to merge them to find the parcel number, we would not have the correct 10 digit value. To fix this, we employed the 
+                str_pad function from the stringr library to add leading 0s until each ‘Major’ column had 6 values and each ‘Minor’ column had 4 values. Then we merged these 
+                columns to form a unified ‘Parcel.number’ column. This allowed us to join the Parcel data and Real Property Sales data by parcel number into one larger dataset. 
+                We also transformed the 'DocumentDate' column from a character type into a date format, so that we could filter the dataset by date when needed. Another critical 
+                step was to decode several columns in the sales data to provide meaningful insights. We looked into the King County Data and found coded values and their corresponding 
+                decoded descriptions to create multiple excel files to be merged into the dataset. This includes: 'proptype', 'principaluse', 'propertyclass', 'saleinstrument', and 
+                'salereason' to accompany coded values with their corresponding descriptions. The 'SaleWarning' column required special treatment due to the presence of multiple warnings 
+                in a single cell, separated by spaces. We split these multiple values into separate rows using the separate_rows function from the tidyr library.</h5>
+
+            <h5>Like many real-world datasets, ours contained missing or incorrect data. We handled this by using error checks and data manipulation methods within our R script. This 
+                ensured that our dataset was as complete and accurate as possible. The 'SaleWarning' column contained multiple warnings per row, making decoding a complex task. We resolved 
+                this by splitting these values into separate rows, converting them into numeric format, and then merging with a lookup table to obtain their decoded values. We then re-aggregated 
+                the decoded warnings per parcel, creating a comma-separated list of all warnings for each parcel.</h5>
+
+            <h5>Our data cleaning process was an essential step towards the visualization of property ownership in the Chinatown International District. By systematically addressing issues in our 
+                raw data and transforming it into a suitable format, we have prepared a robust dataset that will serve as the foundation for our mapping application. Despite the challenges we faced, 
+                our approach demonstrates how effective data cleaning strategies can overcome complex issues and prepare raw data for meaningful analysis. Our work forms a strong basis for our future 
+                task of visualizing the dataset on an interactive map.</h5>
+
+            <h4>4.2. Creating the Map</h4>
+            <h5>The aim of our project was to provide a visual representation of property ownership in the Chinatown International District for our sponsor, Puget Sound Sage. To achieve this, we designed 
+                and developed an interactive map using Mapbox GL JS, a powerful and versatile library that allows for the creation of interactive, customizable maps.</h5>
+
+            <h5>Our data source was a CSV file, containing detailed information on various properties such as their parcel numbers, addresses, taxpayer names, sale prices, and dates. We chose the CSV format 
+                due to its wide adoption and compatibility with numerous platforms and tools. Using the Papa Parse library, we were able to read this CSV file and transform its data into JavaScript objects that 
+                could be utilized in our application. For each property in the file, we used the Mapbox Geocoding API to convert the address into geographic coordinates, which are necessary for placement on the map. 
+                For user interactivity, we implemented a feature allowing the user to hover over any point on the map to see relevant information about the property. In addition, we designed a feature (to be implemented) 
+                that allows users to filter the data view by year, allowing them to focus on specific periods of interest.</h5>
+
+            <h5>A major challenge was that some addresses in the dataset could not be converted to coordinates. This was due to limitations of the geocoding service and the presence of incorrectly formatted or non-existent 
+                addresses in the data. To address this issue, we performed a data cleanup process, correcting the formatting of the addresses where possible. We also handled errors by checking the response of the Geocoding 
+                API and providing a warning in the console if coordinates could not be found. This ensured the application would continue to function even if some addresses were not geocoded successfully. We found that some 
+                records in the CSV file contained incorrect or missing data. This was resolved by implementing error checks and handling methods within our JavaScript code. This allowed our application to continue running 
+                smoothly and present as much accurate information as possible, even when encountering problematic data. From this we still encountered a difficulty with populating all of the data points that we needed, so 
+                we took the advice of our peers and decided to utilize the free trial from Google’s Geocoding API to fulfill our needs for coordinates.</h5>
+
+            <h4>4.3. Creating the Charts/Tables</h4>
+            <h5>Now, to understand overall trends of ownership and usage, we wanted to analyze various patterns within our dataset. We came up with four tables and charts to analyze this information:</h5>
+
+            <h5>“‘Transfer of Ownership’ in the same hands” is our first item for analysis, which was created with the intention of recognizing and analyzing how the majority of the points in our dataset were not actual sales, 
+                but ownership was being transferred. These occurrences are signified by a sale price of 0, meaning that there was no money involved and the parcel was essentially handed off to the next owner.</h5>
+
+            <h5>Our second item for analysis is a scatterplot of parcel sale prices over time. This was created to visualize any trends and outliers in sale prices over time. Since the majority of sale prices were 0, we decided 
+                to remove these values from the scatterplot since it would not give much more information on patterns and would instead overcrowd our plot. In addition, some of the sales prices were high values in the millions, 
+                so we divided the sales prices over 1,000,000 to make the plot easier to read.</h5>
+
+            <h5>“Top 20 Sale Prices” is our third item for analysis, which displays the 20 buyers with the highest sale prices from greatest to least, what parcel they purchased, and when these sales were made. This can help us 
+                recognize the LLC’s that are investing large amounts of money into the CID and analyze any underlying patterns between them. Not only that, but it also gives us the exact sale prices of the outliers found on the 
+                scatterplot we made previously, which can help us conceptualize how much buyers are willing to spend on the CID and any patterns on the years these purchases were made.</h5>
+
+            <h5>Our last items for analysis are a “Top 10 Occurrences of Buyer” table for the whole dataset (1980s-2023) and another for after 2008 to 2023. This table was generated by first counting the amount of times each buyer has occurred 
+                in the dataset as a whole and then again for all values after 2008. Then, we pulled the 10 buyers with the highest amount of occurrences from both the whole dataset and values after 2008, also listing how many occurrences 
+                they had. This helps us see who has purchased and had involvement in the most parcels in the CID. Then, we can analyze patterns between who these buyers are and if their involvement was present in the last 15 years (from 2008 and on).</h5>
+
+            <h5>Through all of these items, we intend to find patterns and generate analysis on the CID and ownership transfers trends: what, how much, and when. </h5>
+
+            <h4>Discussion of Results</h4>
+            <h5>As described in our data analysis strategy, we generated four items from our dataset to draw conclusions about our data and on the CID. In this section, we will present these items and discuss what we found from them. 
+                This includes recognizing ownership transfers that seemingly stayed in the same hands, looking into what parcels are sold for over time, the top sale prices for parcels, and the top buyer occurrences.
+
+            <h4>5.1. "Transfer of Ownership" In the Same Hands</h4>
+            <h5>After generating a table with all parcel sales that had a sale price of 0, we were able to find that out of all 629 CID parcel sale instances in our dataset, 366 of them had a sale price of 0. In pulling a sample of 
+                our table with the sales that occurred with a sale price of 0, we can gain a better understanding of what is happening in these sales.</h5>
+
+            <h5><img src="IMG/0_values.png"></h5>
+
+            <h5>In taking a closer look at the buyers and sellers of parcels with a sale price of 0, we can see that there are often perceived similarities between the names of the buyers and sellers. While there is technically a sale 
+                happening, the price at 0 and similar names between buyers and sellers allows us to infer that the parcel is staying in the same hands in these instances. In the majority of the instances shown above, the buyer name 
+                seemingly derives from the seller name with the addition of LLC. This might mean that the seller started an LLC after previously purchasing the parcel, but in wanting the parcel to be owned by their LLC they sold the 
+                parcel to their LLC at the price of 0. This is important to recognize, because it shows that LLC’s can be small businesses and a parcel being owned by an LLC is not always an indication that the parcel is not owned by the 
+                CID community. On the other hand, this emphasizes how LLC’s and sale prices at 0 can easily hide the true owners of a parcel. Small businesses and corporations alike can own LLC’s, so while the table above demonstrates 
+                examples of LLC’s likely being small business owners, there are likely cases where large corporations are owners of CID parcels as well.</h5>
+
+            <h4>5.2. Parcel Sales Over Time</h4>
+            <h5>With the knowledge that the majority of points in our dataset had a sale price of 0, we wanted to visualize patterns over time of parcel sales that did not have a sale price of 0. In our scatterplot below, we can understand 
+                typical prices of parcels over the years as well as the outliers and when they occur.</h5>
+
+            <h5><img src="IMG/parcel_sale_price.png"></h5>
+
+            <h5>Through looking at our scatterplot, we can see that most parcel sale prices are under 5 million. There are a handful of parcels that were sold between 5 and 10 million, but above 10 million is where we start to see more outliers 
+                in the data. We can see that within the last 15 years, not only are we seeing more of these outliers but we also can see the sale prices are more spread out and not as condensed in lower prices as the years prior. The sale prices 
+                being spread out with higher values is likely a result of inflation, but the outliers may be an indication of something else. Without additional details on the sales, we can infer that these outliers are a result of large investments 
+                and are less likely to be small businesses. As a result, there is potential that these outlier sales take parcels out of the hands of the community and contribute to harmful causes for the community, which is why further exploration 
+                is needed.</h5>
+
+            <h4>5.3. Top 20 Sale Prices</h4>
+            <h5>After visualizing the marginal difference of the outliers from the rest of the data, we wanted to take a closer look at the information provided for the outliers. Using the table below, we can see which buyers to investigate to gain a 
+                better understanding of why the sale price was so high for the parcel.</h5>
+
+            <h5><img src="IMG/top_20_sales.png"></h5>
+
+            <h5>There is an extremely clear pattern that can be seen through analyzing who the buyers are for the top sale prices. When looking at the date these parcels were purchased, all were within the last 15 years and the majority were in the last 
+                5 years. While it is tough to know exactly who is behind these LLC’s and what the properties are used for, a majority of these buyers are associated with housing and apartments. It is rather alarming that the highest sales in our data are 
+                apartments, as this is an indication of gentrification: with large investments in the CID being for housing, comes increased rent and wealthier people moving in. This is a prime example of the CID being in danger, as these high price and 
+                large scale housing options have and will continue to push members out of the community.</h5>
+
+            <h4>5.4. Top 10 Occurences of Buyer</h4>
+            <h5>To further investigate buyers of parcels within the CID, we looked into buyers that appeared the most in our dataset. By looking into the buyers in the tables below, we are able to compare who has bought the most parcels in the last 15 years 
+                to who has bought the most parcels in the entire dataset that dates back to the 1980s. This tells us if the buyer that bought the most parcels in the whole dataset, bought some or all of those parcels in the last 15 years.</h5>
+
+            <h5><img src="IMG/top_10_occurences.png"></h5>
+
+            <h5>When comparing the two tables, we can see that the buyers that occur in both datasets are: 1029 South Jackson Street Apartments Investors LLC, Seattle City Of, and Housing at Lincs LLC. This means that three of the buyers that have the most 
+                occurrences of buying parcels in our entire dataset, bought some or all of their parcels within the last 15 years. In addition to that, as mentioned in the previous section, it is tough to find who is behind these buyers and what they are doing. 
+                It is clear however by their names, that two out of the three of these buyers that appear in both datasets have some purpose with housing and apartments. We can infer from this that there are two housing projects that began in the last 15 years, 
+                at such a large scale to the point where the buyers have bought the most parcels recorded to date.</h5>
+
+            <h5>It is important to note however, that these tables were generated with Sale Price 0 values included, meaning that they may have bought the most parcels but a transaction directly related to the parcels may not have been involved. Instead, there 
+                may have been an acquisition in play, but we cannot know for sure unless we do a deep dive into these specific purchases. It is also important to recognize that these are the top occurrences of buyers and does not mean that the buyers still own 
+                the property to date. It is possible that they have since sold the property, which can be found by looking through our dataset to see if they have since sold the parcel.</h5>
+
+            <h4>Summary, Conclusions, and Reccomendations</h4>
+            <h5>When conducting an analysis of the top ten buyers within the CID, we found that the majority of the top buyers were LLC’s. When we googled each individual LLC, we were not able to find much information other than that they were related to real estate. 
+                More specifically housing and apartments. This raised concerns with us about the increasing gentrification in the area. We also conducted an analysis on the top 20 sale prices. We found that all 20 top sale prices have been within the last ten years, 
+                and were bought by LLC’s. This helps to show the rise in competitive real estate prices and a spike in commercial apartments and housing within the CID. This gentrification of the area is detrimental to the historical integrity of the district and to 
+                the residents on the CID.</h5>
+
+            <h5>We would recommend further investigation into $0 value transactions between buyers and sellers and the deeper meaning behind why this is happening. This transfer of ownership is commonly happening between the same hands of people, so figuring out the 
+                motivation behind this could be useful when determining land use and reason of purchase. We also recommend looking at the current use of each parcel as this will help us to determine what the LLC’s are using the parcels for. Since LLC’s hide the true owner 
+                of property, looking at the current use of the parcels would be the most efficient way of identifying the reason for purchase and sale.</h5>
+
+            <h4>8. Appenencies</h4>
+
+            <h4>8.1. Appendix A: Contacts</h4>
+
+            <h4>8.2. Appendix B: Samples of Tables, Charts, and Reports</h4>
+
+            <h4>8.3. Appendix C: Resumes</h4>
+            <h5>Christopher Cha</h5>
+            <h5>Edward Kim</h5>
+            <h5>Kya Rice</h5>
+            <h5>My-An Pham</h5>
+
           </body>
         </html>
