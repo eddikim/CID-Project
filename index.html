@@ -57,7 +57,7 @@
                     });
             
                     // Parse the CSV data
-                    Papa.parse('assets/data/Coords_CID_Parcels2008.csv', {
+                    Papa.parse('assets/data/CID_Map_Data.csv', {
                         download: true,
                         header: true,
                         complete: function(results) {
@@ -72,8 +72,9 @@
                                             <strong>Tax Payer Name (2023):</strong> ${parcel["Taxpayer.name"]}<br/>
                                             <strong>Buyer Name:</strong> ${parcel["BuyerName"]}<br/>
                                             <strong>Seller Name:</strong> ${parcel["SellerName"]}<br/>
-                                            <strong>Built Year:</strong> ${parcel["YearBuilt"]}<br/>
+                                            <strong>Built Year:</strong> ${parcel["YrBuilt"]}<br/>
                                             <strong>Sale Price:</strong> ${parcel["SalePrice"]}<br/>
+                                            <strong>Building Description:</strong> ${parcel["BldgDescr"]}<br/>
                                             <strong>Puchase Date:</strong> ${parcel["DocumentDate"]}`);
             
                                 // Create a new marker and add it to the map
