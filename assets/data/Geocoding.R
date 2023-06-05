@@ -1,7 +1,7 @@
 install.packages("ggmap")
 library(ggmap)
 library(dplyr)
-data3 <- read.csv("CID_parcels2008.csv")
+data <- read.csv("CID_parcels2008.csv")
 register_google(key = "AIzaSyDtlgxMzwhUnV9vR_I188tIgF2n3DU_YTY")
 
 # Function to geocode an address
@@ -10,10 +10,18 @@ geocode_address <- function(address) {
   return(result)
 }
 
+
+# Assuming you have a data frame called 'data' with three columns: column1, column2, column3
+
+data <- data %>%
+  filter(Parcel.address != "#Error")
+
+data$Full_Address <- paste(data$Parcel.address, data$Jurisdiction, data$Zip.code, sep = ", ")
+
 # Apply geocoding to each address
 data <- data %>%
   mutate(
-    geocode_result = purrr::map(Parcel.address, geocode_address),
+    geocode_result = purrr::map(Full_Address, geocode_address),
     latitude = purrr::map_dbl(geocode_result, "lat"),
     longitude = purrr::map_dbl(geocode_result, "lon")
   )
