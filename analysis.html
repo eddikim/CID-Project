@@ -25,6 +25,58 @@
         </header>
         <body>
 
+            <h4>Executive Summary</h4>
+            <h5>In the past 15 years, the Chinatown International District (CID) has faced significant upzoning, challenging the well-being of its working-class community. Our goal 
+                was to develop an interactive web map and analysis to preserve small business land ownership and advocate for land conservation in the CID. We had three main objectives 
+                for this project. The first was to evaluate notable changes in ownership trends over time within the CID. The second was to analyze how land is utilized within the CID, 
+                and what the predominant land use patterns are. The third objective was to examine the ways in which corporate entities who own land within the CID are impacting its 
+                local community and residents.</h5>
+            
+            <h5>LLCs (Limited Liability Companies) have a propensity to make it challenging to understand information on land ownership because they obscure the true ownership of parcels.
+                 Companies set up LLCs since “it prevents its owners from being held personally responsible for the debts of the company. If the company goes bankrupt or is sued, the personal 
+                 assets of its owner-investors cannot be pursued” (Fernando, 2023). LLCs also “[allow] all profits to be passed directly to those owners to be taxed as personal income. This 
+                 avoids "double taxation" of both the company and its individual owners” (Fernando, 2023). We wanted to analyze this occurrence of LLCs within the Chinatown-International District, 
+                 as well as investigate and uncover what purpose companies have for using the parcels within the CID. It is critical to note that LLCs are the majority of $0 transactions between 
+                 buyers and sellers for parcels all throughout the CID. We wanted to also examine this occurrence of $0 transactions within the CID and better understand its relation to LLCs.</h5>
+
+            <h5>In order to best achieve our objectives, we developed an interactive web map of the CID that would include a popup for each parcel sold within the last 15 years (2008-2023). The popup 
+                includes the parcel address, tax payer name as of 2023, buyer name, seller name, sale price, and purchase price. The interactive web map also incorporates an analysis tab window that 
+                displays data visualizations based on trends we observed in the data, along with supporting explanations for these observed trends. The first stage in undertaking our project required us 
+                to obtain the data for our project. We requested the King County Assessor’s Office to provide us with the dataset that was used for the property report in the King County Parcel Viewer. 
+                While the data specialist sent us a link to an Assessments Data Download file that had most of the data we were requesting, they let us know that the data is not all in one dataset and 
+                they do not delineate the CID in their data. Fortunately, we found that the Real Property Sales table had a bulk of the information we wanted to work with (including buyer, seller, 
+                documented date of the sale, sale price, etc.), however we could not obtain the year built or current use. After multiple attempts to request this information and a lack of responses, 
+                we made the hard decision to move forward with the data we had at our disposal.</h5>
+
+            <h5>During our stages in data processing, we created a scatter plot chart and several different tables to form our analysis of ownership trends and patterns within the CID. Our “Transfer of 
+                Ownership” In the Same Hands” table (see section 5.1.), shows that out of all 629 CID parcel sale instances in our dataset, 366 of them had a sale price of 0 from 2008-2023. Of these 
+                instances of sale price $0, the buyer name seems to derive from the seller name with the addition of LLC. This suggests that the seller started an LLC after previously purchasing the parcel, 
+                but in wanting the parcel to be owned by their LLC they sold the parcel to their LLC at the price of $0. </h5>
+
+            <h5>Additionally, we made a scatter plot chart that displays the parcel sale prices from the start of our data (1980s) to 2023 (see section 5.2.). There are a handful of parcels that were sold between 
+                $5-10 million, but above $10 million is where we start to see more outliers in the data. We can see that within the last 15 years, not only are we seeing more of these outliers, but we also can see 
+                the sale prices are more spread out and not as condensed in lower prices as the years prior. There is a possibility that these outlier sales are taking parcels out of the hands of the CID community, 
+                and may be contributing to the increase of commercial use within the CID.</h5>
+
+            <h5>After analyzing these outliers and change in purchase price of parcels over the years, we also wanted to analyze what the top 20 sales in the CID, when they occurred, and who purchased them (see section 5.3.). 
+                When looking at the date these parcels were purchased, all were within the last 15 years and the majority were in the last 5 years. While it is tough to know exactly who is behind these LLCs and what the properties 
+                are used for, a majority of these buyers are associated with housing and apartments. It is rather alarming that the highest sales in our data are apartments, as this is an indication of gentrification: with large 
+                investments in the CID being for housing, comes increased rent and wealthier people moving in. This is a prime example of the CID being in danger, as these high price and large scale housing options have and will 
+                continue to push members out of the community.</h5>
+
+            <h5>We then wanted to make two tables analyzing the top buyers within the CID (found in section 5.4.). One table representing the top buyers of parcels within the entire data set (1980’s - 2023) and the other table 
+                representing the top buyers or parcels within the last 15 years (2008 - 2023). When comparing the two tables, we can see that the buyers that occur in both datasets are: 1029 South Jackson Street Apartments Investors 
+                LLC, Seattle City Of, and Housing at Lincs LLC. This means that three of the buyers that have the most occurrences of buying parcels in our entire dataset, bought some or all of their parcels within the last 15 years. 
+                We can infer from this that there are two housing projects that began in the last 15 years, at such a large scale to the point where the buyers have bought the most parcels recorded to date. It is important to note however, 
+                that these tables were generated with Sale Price 0 values included, meaning that they may have bought the most parcels but a transaction directly related to the parcels may not have been involved.</h5>
+
+            <h5>All of these results have raised concerns about gentrification within the CID. The analysis completed  helps to show us the rise in competitive real estate prices and gentrification within the Chinatown-International District. 
+                This gentrification of the area is detrimental to the historical integrity of the district and to the residents on the CID.</h5>
+
+            <h5>We would recommend further investigation into $0 value transactions between buyers and sellers and the deeper meaning behind why this is happening. This transfer of ownership is commonly happening between the same hands of people, 
+                so figuring out the motivation behind this could be useful when determining land use and reason of purchase. We also recommend looking at the current use of each parcel as this will help us to determine what the LLCs are using the parcels 
+                for. Since LLCs hide the true owner of property, looking at the current use of the parcels would be the most efficient way of identifying the reason for purchase and sale.</h5>
+            
             <h4>Table of Contents</h4>
                 <h5>1. Background and Problem Statement</h5>
                 <h5>2. System Requirements</h5>
@@ -114,7 +166,7 @@
                  leading zeros before we could combine the major and minor columns to get the full parcel numbers. We will discuss how we did this along with the rest of 
                  our data cleaning process in the section below.</h5>
             
-            <h4>3.1. Agreed Upon CID Bounds</h4>
+            <h4>3.1. Agreed Upon CID Bounds: Provided by Puget Sound Sage</h4>
             <h5><img src="IMG/cid_bounds.png"></h5>
             <h5>Figure 1</h5>
             <h5>*A link to this map can also be found in Section 8.2: Appendix B*</h5>
