@@ -122,3 +122,28 @@ a.active, a:hover{
         left: 0;
     }
 }
+
+.dropdown {
+    position: absolute;
+        width: 200px;
+        height: 40px;
+        border-color: 4px #52c41d;
+        display: flex;
+        align-items: center;
+    }
+    select#year-filter {
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        appearance: none;
+        outline: none;
+    }
+    .arrow {
+        position: absolute;
+        right: 10px;
+        pointer-events: none;
+        color: #52c41d;
+    }
