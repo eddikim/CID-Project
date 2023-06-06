@@ -57,6 +57,22 @@
                         'source': 'assets/street-tiles'
                     });
 
+                    map.addSource('border', {
+                        'type': 'geojson',
+                        'data': 'assets/data/CID_Boundaries.geojson' // Replace with the path to your GeoJSON file
+                    });
+
+                    map.addLayer({
+                        'id': 'borderLayer',
+                        'type': 'line',
+                        'source': 'border',
+                        'layout': {},
+                        'paint': {
+                            'line-color': '#006400', // Color of the border.
+                            'line-width': 3 // Width of the border.
+                        }
+                    });
+
                     // Parse the CSV data
                     Papa.parse('assets/data/CID_Map_Data_Manual.csv', {
                         download: true,
