@@ -10,16 +10,6 @@ body{
     padding: 0;
     font: 18px;
 }
-.dropdown {
-    font-size: 20px;
-    margin-top: 65px;
-    margin-bottom: 10px;
-    position: relative;
-    z-index: 2;
-    margin-left: 40px;
-    margin: auto;
-    text-align: center;
-}
 
 main {
     max-width: max-content;
